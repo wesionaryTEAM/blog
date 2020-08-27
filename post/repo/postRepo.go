@@ -30,7 +30,7 @@ func (r *repo) Save(post *model.Post) *model.Post {
 	client, err := app.Firestore(ctx)
 	defer client.Close()
 	if err != nil {
-		log.Printf("An error has occurred: %s", err)
+		log.Printf("An error has occurred on setting client: %s", err)
 	}
 	results, err := client.Collection(collectionName).Doc("LA").Set(ctx, map[string]interface{}{
 		"ID":          post.ID,
@@ -40,7 +40,7 @@ func (r *repo) Save(post *model.Post) *model.Post {
 	})
 	if err != nil {
 		// Handle any errors in an appropriate way, such as returning them.
-		log.Printf("An error has occurred: %s", err)
+		log.Printf("An error has occurred on adding data: %s", err)
 	}
 	fmt.Println(results)
 	return post
