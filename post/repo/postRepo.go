@@ -2,11 +2,9 @@ package repo
 
 import (
 	"context"
-	"fmt"
 	"github/bhattaraibishal50/blog/common"
 	"github/bhattaraibishal50/blog/post/model"
 	"log"
-	"time"
 )
 
 // PostRepository interface
@@ -31,17 +29,16 @@ func (r *firebaseRepo) Save(post *model.Post) *model.Post {
 	if err != nil {
 		log.Printf("An error has occurred on setting client: %s", err)
 	}
-	results, err := client.Collection(collectionName).Doc(common.GetNewUUID().String()).Set(ctx, map[string]interface{}{
+	_, err = client.Collection(collectionName).Doc(common.GetNewUUID().String()).Set(ctx, map[string]interface{}{
 		"ID":          post.ID,
 		"Title":       post.Title,
 		"Description": post.Description,
-		"CreatedAt":   time.Now(),
+		"CreatedAt":   post.CreatedAt,
 	})
 	if err != nil {
 		// Handle any errors in an appropriate way, such as returning them.
 		log.Printf("An error has occurred on adding data: %s", err)
 	}
-	fmt.Println(results)
 	return post
 }
 

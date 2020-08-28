@@ -9,5 +9,5 @@ import (
 // PostRoute exports user routes
 func PostRoute(routerGroup *gin.RouterGroup) {
 	routerGroup.GET("/", postUsecase.GetPosts)
-	routerGroup.GET("/create", postUsecase.AddPosts)
+	routerGroup.POST("/create", postUsecase.AddPosts)
 }
