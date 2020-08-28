@@ -25,6 +25,7 @@ func NewFirebasePostRepository() PostRepository {
 	return &firebaseRepo{}
 }
 
+// save function
 func (r *firebaseRepo) Save(post *model.Post) *model.Post {
 	app := common.InitFirebase()
 	ctx := context.Background()
@@ -45,6 +46,7 @@ func (r *firebaseRepo) Save(post *model.Post) *model.Post {
 	return post
 }
 
+// find all function
 func (r *firebaseRepo) FindAll() []*model.Post {
 	app := common.InitFirebase()
 	ctx := context.Background()
