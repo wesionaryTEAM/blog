@@ -1,4 +1,7 @@
-### BLOG APP (GO LANG)
+
+
+### BLOG APP
+
 
 This codebase implements the clean architecture [uncle BOB]and the use of different repository such as mysql, firebase. It aims to understand the full-fledged go-lang application with RESTFUL API. 
 
@@ -68,8 +71,10 @@ go get -u github.com/pilu/fresh
 ## Makefile and start dev-server
 I have used makefile as service to run and build the package. 
 ```
-➜  make serve
+➜  make serve - It run system with hot reload
+➜  make dev  -It runs system  
+
 ```
 
 ## Todo
-- Add Test module. 
+- Add test module. 
