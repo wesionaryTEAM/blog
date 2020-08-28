@@ -23,7 +23,7 @@ func AddPosts(c *gin.Context) {
 	post.ID = common.GetNewUUID()
 	post.Title = "TitleFromCode"
 	post.Description = "Description from code"
-	postRepo := postRepo.NewPostRepository()
+	postRepo := postRepo.NewFirebasePostRepository()
 	res := postRepo.Save(&post)
 	c.JSON(http.StatusOK, gin.H{"status": &res})
 }

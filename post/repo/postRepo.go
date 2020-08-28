@@ -14,17 +14,16 @@ type PostRepository interface {
 	Save(post *model.Post) *model.Post
 }
 
-// Repo struct implements the interface
-type repo struct{}
-
 const collectionName string = "posts"
 
-// NewPostRepository constructor returns the postRepositoory
-func NewPostRepository() PostRepository {
-	return &repo{}
+type firebaseRepo struct{}
+
+// NewFirebasePostRepository constructor returns the postRepositoory
+func NewFirebasePostRepository() PostRepository {
+	return &firebaseRepo{}
 }
 
-func (r *repo) Save(post *model.Post) *model.Post {
+func (r *firebaseRepo) Save(post *model.Post) *model.Post {
 	app := common.InitFirebase()
 	ctx := context.Background()
 	client, err := app.Firestore(ctx)
@@ -45,3 +44,20 @@ func (r *repo) Save(post *model.Post) *model.Post {
 	fmt.Println(results)
 	return post
 }
+
+// -----------------------------------------------------------
+// mysql repo
+// -----------------------------------------------------------
+
+// type mysqlRepo struct{}
+
+// // NewMysqlPostRepository returns struct for mysql
+// func NewMysqlPostRepository() PostRepository {
+// 	return &mysqlRepo{}
+// }
+
+// func (r *mysqlRepo) Save(post *model.Post) *model.Post {
+// 	db := common.DbConnection()
+// 	fmt.Println(db)
+// 	return post
+// }
