@@ -15,12 +15,13 @@ import (
 
 // GetPosts gets the posts
 func GetPosts(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"status": "on posts"})
+	postRepo := postRepo.NewFirebasePostRepository()
+	posts := postRepo.FindAll()
+	c.JSON(http.StatusOK, gin.H{"data": &posts})
 }
 
 // AddPosts add the post
 func AddPosts(c *gin.Context) {
-
 	// for json type data we need to bind with the struct references https://mholt.github.io/json-to-go/
 	//JSON BIND
 	post := model.Post{}
@@ -33,5 +34,5 @@ func AddPosts(c *gin.Context) {
 	c.Bind(post)
 	postRepo := postRepo.NewFirebasePostRepository()
 	res := postRepo.Save(&post)
-	c.JSON(http.StatusOK, gin.H{"status": &res})
+	c.JSON(http.StatusOK, gin.H{"data": &res})
 }

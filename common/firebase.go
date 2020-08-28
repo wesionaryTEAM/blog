@@ -8,12 +8,9 @@ import (
 
 // InitFirebase - Opening a database and save the reference to `Database` struct.
 func InitFirebase() *firebase.App {
-	ctx := context.Background()
 	opt := option.WithCredentialsFile("/home/bishal/go/src/github/bhattaraibishal50/blog/serviceAccountKey.json")
-	config := &firebase.Config{}
-	config.ProjectID = "blog-goland"
-	// ""
-	app, err := firebase.NewApp(ctx, config, opt)
+	config := &firebase.Config{ProjectID: "blog-goland"}
+	app, err := firebase.NewApp(context.Background(), config, opt)
 	if err != nil {
 		panic(err.Error())
 	}
