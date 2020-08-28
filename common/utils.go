@@ -6,7 +6,7 @@ import (
 	"github.com/google/uuid"
 )
 
-// GetNewUUID returns newId
+// GetNewUUID retuns uuid
 func GetNewUUID() uuid.UUID {
 	return uuid.New()
 }

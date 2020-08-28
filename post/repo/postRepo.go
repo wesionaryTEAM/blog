@@ -31,7 +31,7 @@ func (r *firebaseRepo) Save(post *model.Post) *model.Post {
 	if err != nil {
 		log.Printf("An error has occurred on setting client: %s", err)
 	}
-	results, err := client.Collection(collectionName).Doc("LA").Set(ctx, map[string]interface{}{
+	results, err := client.Collection(collectionName).Doc(common.GetNewUUID().String()).Set(ctx, map[string]interface{}{
 		"ID":          post.ID,
 		"Title":       post.Title,
 		"Description": post.Description,

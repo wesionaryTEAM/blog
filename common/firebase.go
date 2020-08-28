@@ -1,8 +1,6 @@
 package common
 
 import (
-	"fmt"
-
 	firebase "firebase.google.com/go"
 	"golang.org/x/net/context"
 	"google.golang.org/api/option"
@@ -10,10 +8,12 @@ import (
 
 // InitFirebase - Opening a database and save the reference to `Database` struct.
 func InitFirebase() *firebase.App {
-	opt := option.WithCredentialsFile("github/bhattaraibishal50/blog/serviceAccountKey.json")
-	app, err := firebase.NewApp(context.Background(), nil, opt)
-	fmt.Println("opt ::", opt)
-	fmt.Println("app ::", app)
+	ctx := context.Background()
+	opt := option.WithCredentialsFile("/home/bishal/go/src/github/bhattaraibishal50/blog/serviceAccountKey.json")
+	config := &firebase.Config{}
+	config.ProjectID = "blog-goland"
+	// ""
+	app, err := firebase.NewApp(ctx, config, opt)
 	if err != nil {
 		panic(err.Error())
 	}

@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+	"github/bhattaraibishal50/blog/common"
 	"github/bhattaraibishal50/blog/middleware"
 
 	"github.com/gin-gonic/gin"
@@ -10,6 +12,7 @@ import (
 
 func main() {
 	//setting up the application
+	fmt.Println("UUID ::", common.GetNewUUID())
 	r := gin.Default()
 	r.Use(favicon.New("./public/favicon.ico")) // set favicon middleware
 

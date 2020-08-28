@@ -20,7 +20,7 @@ func GetPosts(c *gin.Context) {
 // AddPosts add the post
 func AddPosts(c *gin.Context) {
 	post := model.Post{}
-	post.ID = common.GetNewUUID()
+	post.ID = common.GetNewUUID().String()
 	post.Title = "TitleFromCode"
 	post.Description = "Description from code"
 	postRepo := postRepo.NewFirebasePostRepository()

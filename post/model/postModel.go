@@ -1,10 +1,8 @@
 package model
 
-import "github.com/google/uuid"
-
 // Post struct with the post attributes
 type Post struct {
-	ID          uuid.UUID
+	ID          string
 	Title       string
 	Description string
 	CreatedAt   string
