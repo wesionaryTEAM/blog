@@ -8,16 +8,6 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-/*
-Database struct
-@description
-- Database has attribute DB which is equvalent to grom.DB
-- Struct for gorm DB
-*/
-type Database struct {
-	*gorm.DB
-}
-
 // DB database
 var DB *gorm.DB
 
@@ -36,4 +26,9 @@ func DbConnection() *gorm.DB {
 // MigrateDatabase database tables
 func MigrateDatabase(db *gorm.DB) {
 	db.AutoMigrate()
+}
+
+// GetDatabase returns the db var
+func GetDatabase() *gorm.DB {
+	return DB
 }

@@ -2,7 +2,6 @@ package repo
 
 import (
 	"context"
-	"fmt"
 	"github/bhattaraibishal50/blog/common"
 	"github/bhattaraibishal50/blog/post/model"
 	"log"
@@ -16,9 +15,13 @@ type PostRepository interface {
 	FindAll() []*model.Post
 }
 
-const collectionName string = "posts"
-
 type firebaseRepo struct{}
+
+var app = common.NewFirebaseApp()
+var client = app.GetFirestore()
+var ctx = context.Background()
+
+const collectionName string = "posts"
 
 // NewFirebasePostRepository constructor returns the postRepositoory
 func NewFirebasePostRepository() PostRepository {
@@ -27,14 +30,7 @@ func NewFirebasePostRepository() PostRepository {
 
 // save function
 func (r *firebaseRepo) Save(post *model.Post) *model.Post {
-	app := common.InitFirebase()
-	ctx := context.Background()
-	client, err := app.Firestore(ctx)
-	defer client.Close()
-	if err != nil {
-		log.Printf("An error has occurred on setting client: %s", err)
-	}
-	_, err = client.Collection(collectionName).Doc(post.ID).Set(ctx, map[string]interface{}{
+	_, err := client.Collection(collectionName).Doc(post.ID).Set(ctx, map[string]interface{}{
 		"ID":          post.ID,
 		"Title":       post.Title,
 		"Description": post.Description,
@@ -48,13 +44,6 @@ func (r *firebaseRepo) Save(post *model.Post) *model.Post {
 
 // find all function
 func (r *firebaseRepo) FindAll() []*model.Post {
-	app := common.InitFirebase()
-	ctx := context.Background()
-	client, err := app.Firestore(ctx)
-	defer client.Close()
-	if err != nil {
-		log.Printf("An error has occurred on setting client: %s", err)
-	}
 	var posts []*model.Post
 	iter := client.Collection(collectionName).Documents(ctx)
 	for {
@@ -65,10 +54,8 @@ func (r *firebaseRepo) FindAll() []*model.Post {
 		if err != nil {
 			log.Fatalf("Failed to iterate: %v", err)
 		}
-
-		fmt.Println("single loop ::", doc.Data())
 		var post model.Post
-		doc.DataTo(&post)
+		doc.DataTo(&post) //map to the post struct directory
 		posts = append(posts, &post)
 	}
 	return posts
