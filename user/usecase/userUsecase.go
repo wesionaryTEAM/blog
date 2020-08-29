@@ -13,3 +13,13 @@ import (
 func GetUsers(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"status": "on users"})
 }
+
+// Login  login the suer
+func Login(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"status": "on login"})
+}
+
+// Signup signup the user
+func Signup(c *gin.Context) {
+	//username
+}

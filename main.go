@@ -8,7 +8,14 @@ import (
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/thinkerou/favicon"
+
+	ginSwagger "github.com/swaggo/gin-swagger"
+
+	// gin-swagger middleware
+	swaggerFiles "github.com/swaggo/files"
 )
+
+// swagger embed files
 
 func main() {
 	//setting up the application
@@ -19,5 +26,6 @@ func main() {
 	// set routes
 	middleware.SetRoutes(r)
 	PORT := ":8080"
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	r.Run(PORT) //listen and serve on 0.0.0.0:8080 by default
 }
