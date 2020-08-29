@@ -1,5 +1,47 @@
+definitions:
+  model.Post:
+    properties:
+      Description:
+        type: string
+      Title:
+        type: string
+      createdAt:
+        type: string
+      id:
+        type: string
+    required:
+    - Description
+    - Title
+    type: object
 info:
-  contact: {}
+  contact:
+    email: redaytowork@info.jp
+    name: readytowork
+    url: http://readytowork.jp
   license: {}
-paths: {}
+paths:
+  /posts/create:
+    post:
+      consumes:
+      - application/json
+      description: Add Posts
+      parameters:
+      - description: name search by q
+        in: query
+        name: q
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          headers:
+            Token:
+              description: qwerty
+              type: string
+          schema:
+            items:
+              $ref: '#/definitions/model.Post'
+            type: array
+      summary: Add Posts
 swagger: "2.0"
