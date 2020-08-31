@@ -1,5 +1,6 @@
 // Package common  - common packs
 // References : https://github.com/firebase/firebase-admin-go
+// https://www.reddit.com/r/golang/comments/a0g5fp/how_to_loginsign_in_a_user_with_password_in/
 package common
 
 import (
