@@ -15,7 +15,7 @@ func GetNewUUID() uuid.UUID {
 func ConvertStringToID(s string) uuid.UUID {
 	uuid, err := uuid.Parse(s)
 	if err != nil {
-		log.Fatal(err.Error)
+		log.Fatal(err.Error())
 	}
 	return uuid
 }

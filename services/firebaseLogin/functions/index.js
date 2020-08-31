@@ -3,11 +3,14 @@ const functions = require('firebase-functions');
 // Create and Deploy Your First Cloud Functions
 // https://firebase.google.com/docs/functions/write-firebase-functions
 
-const firebase = require("firebase");
 const express = require("express");
 const app = express();
-exports.helloWorld = functions.region('asia-northeast3').https.onRequest((request, response) => {
-  response.send("Hello from Firebase!");
-});
+app.use(express.json());
+require('./routes/index')(app);
+
+// API Endpoint : http://localhost:5000/blog-goland/asia-northeast3/api 
+// firebase function serving express app.
+exports.api = functions.region('asia-northeast3').https.onRequest(app);
+
 
 
