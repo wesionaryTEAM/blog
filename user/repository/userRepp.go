@@ -2,6 +2,7 @@ package repository
 
 import (
 	"context"
+	"fmt"
 	"github/bhattaraibishal50/blog/common"
 	"log"
 )
@@ -23,7 +24,12 @@ func NewFirebaseAuthRepo() UserRepository {
 }
 
 // Login func
+// The “Firebase Admin SDK” is for administrative actions only (fetching user data, changing the user’s email, etc) without their existing password. If you want to sign in as a user, you need to use the Firebase Authentication SDK.
 func (*firebaseAuthRepo) Login() {
-	usersRecord, err := fbAuth.GetUserByEmail(ctx, "bishal.bhattarai@readytowork.jp")
-	log.Printf("Successfully fetched user data: %v\n", *usersRecord, err)
+	// checks the user by email and the password
+	usersRecord, err := fbAuth.GetUser(ctx, "5ZamU26mXsOYmCrankcEGTujgsj2")
+	if err != nil {
+		fmt.Println(err)
+	}
+	log.Printf("Successfully fetched user data: %v\n", usersRecord.Email, usersRecord.UserInfo)
 }
