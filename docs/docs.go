@@ -29,38 +29,47 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/posts/create": {
+        "/users/login": {
             "post": {
-                "description": "Add Posts",
+                "description": "Login user by email and password",
                 "consumes": [
                     "application/json"
                 ],
                 "produces": [
                     "application/json"
                 ],
-                "summary": "Add Posts",
+                "tags": [
+                    "users"
+                ],
+                "summary": "Login user",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "name search by q",
-                        "name": "q",
-                        "in": "query"
+                        "description": "Login user",
+                        "name": "Body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.LoginUser"
+                        }
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "OK",
+                    "400": {
+                        "description": "Bad Request",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/model.Post"
-                            }
-                        },
-                        "headers": {
-                            "Token": {
-                                "type": "string",
-                                "description": "qwerty"
-                            }
+                            "$ref": "#/definitions/common.HTTPError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/common.HTTPError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/common.HTTPError"
                         }
                     }
                 }
@@ -68,24 +77,33 @@ var doc = `{
         }
     },
     "definitions": {
-        "model.Post": {
+        "common.HTTPError": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "example": 400
+                },
+                "message": {
+                    "type": "string",
+                    "example": "Request Failure"
+                }
+            }
+        },
+        "model.LoginUser": {
             "type": "object",
             "required": [
-                "Description",
-                "Title"
+                "Email",
+                "Password"
             ],
             "properties": {
-                "Description": {
-                    "type": "string"
+                "Email": {
+                    "type": "string",
+                    "example": "email"
                 },
-                "Title": {
-                    "type": "string"
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
+                "Password": {
+                    "type": "string",
+                    "example": "password"
                 }
             }
         }

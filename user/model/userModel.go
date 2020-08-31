@@ -1,11 +1,17 @@
 package model
 
-// UserModel usermodel
-type UserModel struct {
-	ID       uint   `gorm:"primary_key" json:"ID"`
-	Username string `gorm:"column:username" json:"Username" `
-	Email    string `gorm:"column:email;unique_index" json:"Email"`
-	Bio      string `gorm:"column:bio;size:1024" json:"Bio"`
-	Image    string `gorm:"column:image" json:"Image"`
-	Password string `gorm:"column:password;not null" json:"Password"`
+// User usermodel
+type User struct {
+	ID       uint   `json:"ID"`
+	Username string `json:"Username"`
+	Email    string `json:"Email"`
+	Bio      string `json:"Bio"`
+	Image    string `json:"Image"`
+	Password string `json:"Password" `
+}
+
+// LoginUser  userModel
+type LoginUser struct {
+	Email    string `json:"Email"  example:"email" binding:"required"`
+	Password string `json:"Password" example:"password" binding:"required"`
 }

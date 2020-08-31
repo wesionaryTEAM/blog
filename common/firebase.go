@@ -1,3 +1,5 @@
+// Package common  - common packs
+// References : https://github.com/firebase/firebase-admin-go
 package common
 
 import (

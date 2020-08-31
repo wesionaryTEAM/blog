@@ -1,17 +1,24 @@
 definitions:
-  model.Post:
+  common.HTTPError:
     properties:
-      Description:
+      code:
+        example: 400
+        type: integer
+      message:
+        example: Request Failure
         type: string
-      Title:
+    type: object
+  model.LoginUser:
+    properties:
+      Email:
+        example: email
         type: string
-      createdAt:
-        type: string
-      id:
+      Password:
+        example: password
         type: string
     required:
-    - Description
-    - Title
+    - Email
+    - Password
     type: object
 info:
   contact:
@@ -20,28 +27,34 @@ info:
     url: http://readytowork.jp
   license: {}
 paths:
-  /posts/create:
+  /users/login:
     post:
       consumes:
       - application/json
-      description: Add Posts
+      description: Login user by email and password
       parameters:
-      - description: name search by q
-        in: query
-        name: q
-        type: string
+      - description: Login user
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/model.LoginUser'
       produces:
       - application/json
       responses:
-        "200":
-          description: OK
-          headers:
-            Token:
-              description: qwerty
-              type: string
+        "400":
+          description: Bad Request
           schema:
-            items:
-              $ref: '#/definitions/model.Post'
-            type: array
-      summary: Add Posts
+            $ref: '#/definitions/common.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/common.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/common.HTTPError'
+      summary: Login user
+      tags:
+      - users
 swagger: "2.0"

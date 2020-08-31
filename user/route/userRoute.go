@@ -10,4 +10,5 @@ import (
 func UserRoute(routerGroup *gin.RouterGroup) {
 	routerGroup.GET("/", userUsecase.GetUsers)
 	routerGroup.POST("/signup", userUsecase.Signup)
+	routerGroup.POST("/login", userUsecase.Login)
 }

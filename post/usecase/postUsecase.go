@@ -20,15 +20,7 @@ func GetPosts(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": &posts})
 }
 
-// AddPosts godoc
-// @Summary Add Posts
-// @Description Add Posts
-// @Accept  json
-// @Produce  json
-// @Param q query string false "name search by q"
-// @Success 200 {array} model.Post
-// @Header 200 {string} Token "qwerty"
-// @Router /posts/create [post]
+// AddPosts add the post
 func AddPosts(c *gin.Context) {
 	// for json type data we need to bind with the struct references https://mholt.github.io/json-to-go/
 	//JSON BIND
