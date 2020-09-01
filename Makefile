@@ -1,3 +1,6 @@
+firebase:
+	$(MAKE) -C "services/firebaseLogin/"
+
 serve: 
 	fresh 
 dev:
