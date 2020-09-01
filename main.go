@@ -14,6 +14,7 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
+
 // @contact.name readytowork
 // @contact.url http://readytowork.jp
 // @contact.email redaytowork@info.jp
@@ -24,7 +25,7 @@ func main() {
 	docs.SwaggerInfo.Title = "Blog Application"
 	docs.SwaggerInfo.Description = "This is a sample server for Blog Application"
 	docs.SwaggerInfo.Version = "1.0"
-	docs.SwaggerInfo.Host = "localhost:8080"
+	docs.SwaggerInfo.Host = "https://8080-c6fca9c0-4e36-41d2-86db-511a4134a8bf.ws-us02.gitpod.io"
 	docs.SwaggerInfo.BasePath = "/"
 	docs.SwaggerInfo.Schemes = []string{"http", "https"}
 

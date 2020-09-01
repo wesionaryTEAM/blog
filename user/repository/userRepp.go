@@ -27,6 +27,9 @@ func NewFirebaseAuthRepo() UserRepository {
 // If you want to sign in as a user, you need to use the Firebase Authentication SDK.
 func (*firebaseAuthRepo) Login() {
 	// checks the user by email and the password
+
+	
+	// request body (payload)
 	usersRecord, err := fbAuth.GetUser(ctx, "5ZamU26mXsOYmCrankcEGTujgsj2")
 	if err != nil {
 		fmt.Println(err)

@@ -1,6 +1,4 @@
 serve: 
-	fresh
-	cd /workspace/blog/services/firebaseLogin/functions
-	firebase serve 
+	fresh 
 dev:
 	go run main.go
